@@ -25,7 +25,7 @@ public abstract class AbstractWebtasksServletHandler extends HttpServlet impleme
 	@Override
 	public final void init(ServletConfig config) throws ServletException {
 		contextName = config.getServletContext().getContextPath();
-		dataService = WebtasksServiceManager.getInstance(config.getServletContext()).getDataService();
+		dataService = WebtasksServiceManager.getInstance().getDataService();
 		super.init(config);
 	}
 	

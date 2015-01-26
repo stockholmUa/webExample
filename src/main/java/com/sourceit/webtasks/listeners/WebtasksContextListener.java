@@ -23,15 +23,15 @@ public class WebtasksContextListener implements ServletContextListener {
 		String context = sce.getServletContext().getContextPath();
 		sce.getServletContext().setAttribute(WebtasksConstants.CONTEXT, context);
 		
-		WebtasksServiceManager webtasksServiceManager = WebtasksServiceManager.getInstance(sce.getServletContext());
-		webtasksServiceManager.startAllServices();
+		WebtasksServiceManager.initialize(sce.getServletContext());
+		WebtasksServiceManager.getInstance().startAllServices();
 		
 		LOGGER.info("Context '"+getContext(sce)+"' started");
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		WebtasksServiceManager webtasksServiceManager = WebtasksServiceManager.getInstance(sce.getServletContext());
+		WebtasksServiceManager webtasksServiceManager = WebtasksServiceManager.getInstance();
 		webtasksServiceManager.closeAllServices();
 		
 		LOGGER.info("Context '"+getContext(sce)+"' stopped");
